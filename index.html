@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InternHub - Connect students with companies for internship opportunities">
+    <title>InternHub - Professional Networking for Internships</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/auth-hero.css">
+
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-bg-gradient {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .auth-bg-gradient-1 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -250px;
+            left: -250px;
+            animation-delay: 0s;
+        }
+
+        .auth-bg-gradient-2 {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -250px;
+            right: -250px;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .auth-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            width: 100%;
+            max-width: 450px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+            background: var(--glass-bg);
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.75rem;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .auth-tab.active {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .account-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .account-type-option {
+            padding: var(--spacing-md);
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-align: center;
+        }
+
+        .account-type-option:hover {
+            background: var(--glass-hover);
+            transform: translateY(-2px);
+        }
+
+        .account-type-option.selected {
+            border-color: var(--accent);
+            background: var(--glass-hover);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .account-type-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .account-type-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .password-input-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .form-error {
+            color: #f5576c;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-error.visible {
+            display: block;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: var(--spacing-md) 0;
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .auth-divider span {
+            padding: 0 var(--spacing-sm);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper label {
+            cursor: pointer;
+            user-select: none;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <!-- Animated Background Gradients -->
+        <div class="auth-bg-gradient auth-bg-gradient-1"></div>
+        <div class="auth-bg-gradient auth-bg-gradient-2"></div>
+
+        <div class="auth-container">
+            <!-- Left Side - Hero Section -->
+            <div class="auth-hero">
+                <div class="auth-hero-content">
+                    <div class="brand-logo">
+                        <div class="logo-icon">🎓</div>
+                        <h1>InternHub</h1>
+                    </div>
+
+                    <h2 class="hero-title animate-fade-in-up">Connect. Learn. Grow.</h2>
+                    <p class="hero-subtitle animate-fade-in-up delay-100">
+                        The premier platform connecting students with their dream internships
+                    </p>
+
+                    <div class="feature-cards animate-fade-in-up delay-200">
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h3>Network</h3>
+                            <p>Connect with peers and professionals</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💼</div>
+                            <h3>Opportunities</h3>
+                            <p>Discover internships that match your skills</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Launch Career</h3>
+                            <p>Build your professional presence</p>
+                        </div>
+                    </div>
+
+                    <!-- Animated Decoration -->
+                    <div class="floating-elements">
+                        <div class="float-circle"></div>
+                        <div class="float-circle"></div>
+                        <div class="float-circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Auth Form -->
+            <div class="auth-form-section">
+                <div class="auth-card">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" data-tab="login">Login</div>
+                        <div class="auth-tab" data-tab="signup">Sign Up</div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form class="auth-form active" id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="loginEmail" placeholder="your@email.com"
+                                required>
+                            <div class="form-error" id="loginEmailError">Please enter a valid email</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div style="position: relative;">
+                                <input type="password" class="form-input" id="loginPassword" placeholder="••••••••"
+                                    required>
+                                <span class="password-toggle" data-target="loginPassword">👁️</span>
+                            </div>
+                            <div class="form-error" id="loginPasswordError">Password must be at least 8 characters</div>
+                        </div>
+
+                        <div class="form-group" style="flex-direction: row; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="rememberMe" style="width: auto;">
+                            <label for="rememberMe" style="margin: 0;">Remember me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; margin-top: var(--spacing-md);">
+                            Login
+                        </button>
+
+                        <p class="auth-switch">
+                            Don't have an account? <a href="#" class="auth-tab-link" data-tab="signup">Sign up</a>
+                        </p>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="auth-form" id="signupForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" id="signupName" placeholder="John Doe" required>
+                            <div class="form-error" id="signupNameError">Name must be at least 2 characters</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="signupEmail" placeholder="your@email.com"
+                                required>
+                            <div class="form-error" id="signupEmailError">Please enter a valid email</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div style="position: relative;">
+                                <input type="password" class="form-input" id="signupPassword" placeholder="••••••••"
+                                    required>
+                                <span class="password-toggle" data-target="signupPassword">👁️</span>
+                            </div>
+                            <div class="password-strength-wrap">
+                                <div class="password-strength-track">
+                                    <div id="passwordStrengthBar"></div>
+                                </div>
+                                <span id="passwordStrengthLabel"></span>
+                            </div>
+                            <div class="form-error" id="signupPasswordError">Password must be at least 8 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Confirm Password</label>
+                            <div style="position: relative;">
+                                <input type="password" class="form-input" id="signupConfirmPassword"
+                                    placeholder="••••••••" required>
+                                <span class="password-toggle" data-target="signupConfirmPassword">👁️</span>
+                            </div>
+                            <div class="form-error" id="signupConfirmPasswordError">Passwords do not match</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">I am a:</label>
+                            <div class="account-type-selector">
+                                <div class="account-type-option selected" data-type="student">
+                                    <div class="account-type-icon">🎓</div>
+                                    <div class="account-type-label">Student</div>
+                                </div>
+                                <div class="account-type-option" data-type="company">
+                                    <div class="account-type-icon">🏢</div>
+                                    <div class="account-type-label">Company</div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="accountType" value="student">
+                        </div>
+
+                        <div class="form-group" style="flex-direction: row; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="agreeTerms" style="width: auto;" required>
+                            <label for="agreeTerms" style="margin: 0; font-size: 0.875rem;">
+                                I agree to the Terms & Conditions
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; margin-top: var(--spacing-md);">
+                            Create Account
+                        </button>
+
+                        <p class="auth-switch">
+                            Already have an account? <a href="#" class="auth-tab-link" data-tab="login">Login</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/storage.js"></script>
+        <script src="js/auth.js"></script>
+</body>
+
+</html>
