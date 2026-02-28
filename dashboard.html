@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - InternHub</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="dashboard.html" class="navbar-brand">InternHub</a>
+
+            <div class="navbar-search">
+                <span class="navbar-search-icon">🔍</span>
+                <input type="text" id="globalSearch" placeholder="Search people, jobs, companies...">
+            </div>
+
+            <div class="navbar-nav">
+                <div class="navbar-nav-item" id="homeNav">
+                    🏠
+                </div>
+                <div class="navbar-nav-item" id="connectionsNav">
+                    👥
+                    <span class="badge-notification hidden" id="connectionsBadge">0</span>
+                </div>
+                <div class="navbar-nav-item" id="messagesNav">
+                    💬
+                    <span class="badge-notification hidden" id="messagesBadge">0</span>
+                </div>
+                <div class="navbar-nav-item" id="notificationsNav">
+                    🔔
+                    <span class="badge-notification hidden" id="notificationsBadge">0</span>
+                </div>
+                <div class="navbar-nav-item dropdown" id="profileDropdown">
+                    <img src="" alt="Profile" class="avatar avatar-sm" id="navAvatar">
+                    <div class="dropdown-menu hidden" id="profileMenu">
+                        <a href="profile.html" class="dropdown-item">👤 My Profile</a>
+                        <a href="#" class="dropdown-item" id="settingsLink">⚙️ Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="logoutBtn">🚪 Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav-item">
+                    <a href="dashboard.html" class="sidebar-nav-link active">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg>
+                        <span>Feed</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="profile.html" class="sidebar-nav-link">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="connections.html" class="sidebar-nav-link">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg>
+                        <span>Connections</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="jobs.html" class="sidebar-nav-link">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path
+                                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                            </path>
+                        </svg>
+                        <span>Jobs</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="messages.html" class="sidebar-nav-link">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                            <path
+                                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                            </path>
+                        </svg>
+                        <span>Messages</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="search.html" class="sidebar-nav-link">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Search</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <!-- Create Post -->
+                <div class="glass-card animate-fade-in-up" style="margin-bottom: var(--spacing-lg);">
+                    <div class="flex gap-sm">
+                        <img src="" alt="Your avatar" class="avatar" id="createPostAvatar">
+                        <input type="text" class="form-input" placeholder="Share something with your network..."
+                            id="postInputTrigger" style="flex: 1; cursor: pointer;" readonly>
+                    </div>
+
+                    <div class="flex gap-sm"
+                        style="margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--glass-border);">
+                        <button class="btn btn-ghost" id="addPhotoBtn" style="flex: 1;">
+                            📷 Photo
+                        </button>
+                        <button class="btn btn-ghost" id="addLinkBtn" style="flex: 1;">
+                            🔗 Link
+                        </button>
+                        <button class="btn btn-ghost" id="addHashtagBtn" style="flex: 1;">
+                            # Hashtag
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed -->
+                <div id="feedContainer" class="stagger-children">
+                    <!-- Posts will be loaded here -->
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="text-center hidden" style="padding: var(--spacing-lg);">
+                    <div class="spinner" style="margin: 0 auto;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal hidden">
+        <div class="modal-content animate-scale-in" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Create Post</h3>
+                <button class="modal-close" id="closeCreatePostModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="flex gap-sm" style="margin-bottom: var(--spacing-md);">
+                    <img src="" alt="Your avatar" class="avatar" id="modalPostAvatar">
+                    <div>
+                        <div style="font-weight: 600;" id="modalPostName">Your Name</div>
+                        <div style="font-size: 0.875rem; color: var(--text-tertiary);">Post to public</div>
+                    </div>
+                </div>
+
+                <textarea class="form-textarea" id="postContent" placeholder="What do you want to talk about?"
+                    style="min-height: 150px; margin-bottom: var(--spacing-md);"></textarea>
+
+                <div id="postImagePreview" class="hidden" style="margin-bottom: var(--spacing-md); position: relative;">
+                    <img src="" alt="Preview" style="max-width: 100%; border-radius: var(--radius-md);"
+                        id="postImagePreviewImg">
+                    <button class="btn btn-ghost" id="removePostImage"
+                        style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7);">
+                        ✕
+                    </button>
+                </div>
+
+                <input type="file" id="postImageInput" accept="image/*" style="display: none;">
+
+                <div class="flex gap-sm">
+                    <button class="btn btn-ghost" id="modalAddPhotoBtn">
+                        📷 Add Photo
+                    </button>
+                    <button class="btn btn-ghost" id="modalAddHashtagBtn">
+                        # Add Hashtag
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelPost">Cancel</button>
+                <button class="btn btn-primary" id="submitPost">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Dropdown -->
+    <div id="notificationsDropdown" class="dropdown-menu hidden"
+        style="position: fixed; top: 70px; right: 20px; width: 400px; max-width: 90vw;">
+        <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--glass-border);">
+            <h4 style="margin: 0;">Notifications</h4>
+        </div>
+        <div class="notification-list" id="notificationsList">
+            <!-- Notifications will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/feed.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+
+</html>
