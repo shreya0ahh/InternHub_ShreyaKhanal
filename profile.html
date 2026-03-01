@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - InternHub</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <!-- Same navbar as dashboard.html -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="dashboard.html" class="navbar-brand">InternHub</a>
+            <div class="navbar-search">
+                <span class="navbar-search-icon">🔍</span>
+                <input type="text" id="globalSearch" placeholder="Search people, jobs, companies...">
+            </div>
+            <div class="navbar-nav">
+                <div class="navbar-nav-item" id="homeNav">🏠</div>
+                <div class="navbar-nav-item" id="connectionsNav">👥<span class="badge-notification hidden"
+                        id="connectionsBadge">0</span></div>
+                <div class="navbar-nav-item" id="messagesNav">💬<span class="badge-notification hidden"
+                        id="messagesBadge">0</span></div>
+                <div class="navbar-nav-item" id="notificationsNav">🔔<span class="badge-notification hidden"
+                        id="notificationsBadge">0</span></div>
+                <div class="navbar-nav-item dropdown" id="profileDropdown">
+                    <img src="" alt="Profile" class="avatar avatar-sm" id="navAvatar">
+                    <div class="dropdown-menu hidden" id="profileMenu">
+                        <a href="profile.html" class="dropdown-item">👤 My Profile</a>
+                        <a href="#" class="dropdown-item" id="settingsLink">⚙️ Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="logoutBtn">🚪 Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg><span>Feed</span></a></li>
+                <li class="sidebar-nav-item"><a href="profile.html" class="sidebar-nav-link active"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Profile</span></a></li>
+                <li class="sidebar-nav-item"><a href="connections.html" class="sidebar-nav-link"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg><span>Connections</span></a></li>
+                <li class="sidebar-nav-item"><a href="jobs.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path
+                                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                            </path>
+                        </svg><span>Jobs</span></a></li>
+                <li class="sidebar-nav-item"><a href="messages.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                            <path
+                                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                            </path>
+                        </svg><span>Messages</span></a></li>
+                <li class="sidebar-nav-item"><a href="search.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Search</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container-fluid">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- Profile Card -->
+                <div class="profile-card animate-fade-in-up">
+                    <div class="profile-header">
+                        <img src="" alt="Cover" class="profile-cover" id="profileCover" style="display: none;">
+                        <div class="profile-header-actions">
+                            <button class="btn btn-ghost" id="editCoverBtn"
+                                style="background: rgba(0,0,0,0.5); border: none;">📷 Edit Cover</button>
+                            <input type="file" id="coverInput" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="profile-body"
+                        style="text-align: left; padding: var(--spacing-md); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--spacing-md);">
+
+                        <!-- Left: Avatar -->
+                        <div class="profile-avatar-column"
+                            style="flex: 0 0 150px; display: flex; justify-content: center; position: relative; margin-top: -100px; z-index: 10;">
+                            <div class="profile-avatar-wrapper" style="position: relative;">
+                                <img src="" alt="Profile" class="profile-avatar" id="profileAvatar"
+                                    style="width: 140px; height: 140px; border-width: 5px;">
+                                <button class="btn btn-ghost" id="editAvatarBtn"
+                                    style="position: absolute; bottom: 5px; right: 5px; border-radius: 50%; padding: 0.5rem; background: var(--glass-bg); backdrop-filter: blur(5px);">📷</button>
+                                <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <!-- Middle: Details -->
+                        <div class="profile-details-column" style="flex: 1; min-width: 250px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h2 class="profile-name" id="profileName" style="margin-bottom: 0.25rem;">Name</h2>
+                                    <p class="profile-headline" id="profileHeadline"
+                                        style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">
+                                        Headline</p>
+                                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: var(--spacing-sm);"
+                                        id="profileLocation">📍 Location</p>
+                                </div>
+                                <button class="btn btn-primary btn-sm" id="editProfileBtn">✏️ Edit Profile</button>
+                            </div>
+
+                            <!-- Dynamic Details Hub (Links, Company Size, etc) -->
+                            <div id="profileDetailsGrid"
+                                style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); flex-wrap: wrap; font-size: 0.875rem;">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <!-- Profile Completion -->
+                            <div style="margin-bottom: var(--spacing-sm); width: 100%; max-width: 400px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; font-weight: 600;">Profile Strength</span>
+                                    <span style="font-size: 0.875rem; color: var(--accent);"
+                                        id="completionPercentage">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill" id="completionProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Stats -->
+                        <div class="profile-stats-column"
+                            style="flex: 0 0 250px; padding-left: var(--spacing-md); border-left: 1px solid var(--glass-border);">
+                            <div class="profile-stats"
+                                style="flex-direction: column; gap: var(--spacing-md); border-top: none; padding: 0;">
+                                <div class="profile-stat"
+                                    style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Connections</div>
+                                    <div class="profile-stat-value" id="connectionsCount" style="font-size: 1.25rem;">0
+                                    </div>
+                                </div>
+                                <div class="profile-stat"
+                                    style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Followers</div>
+                                    <div class="profile-stat-value" id="followersCount" style="font-size: 1.25rem;">0
+                                    </div>
+                                </div>
+                                <div class="profile-stat"
+                                    style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Posts</div>
+                                    <div class="profile-stat-value" id="postsCount" style="font-size: 1.25rem;">0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-100">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>About</h3>
+                        <button class="btn btn-ghost" id="editAboutBtn">✏️ Edit</button>
+                    </div>
+                    <p id="profileBio" style="color: var(--text-secondary); line-height: 1.6;">No bio added yet</p>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-200" id="skillsSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Skills</h3>
+                        <button class="btn btn-ghost" id="addSkillBtn">➕ Add Skill</button>
+                    </div>
+                    <div id="skillsList" class="flex flex-wrap gap-sm"></div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-300" id="experienceSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Experience</h3>
+                        <button class="btn btn-ghost" id="addExperienceBtn">➕ Add Experience</button>
+                    </div>
+                    <div id="experienceList"></div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-400" id="educationSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Education</h3>
+                        <button class="btn btn-ghost" id="addEducationBtn">➕ Add Education</button>
+                    </div>
+                    <div id="educationList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal hidden">
+        <div class="modal-content animate-scale-in">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Edit Profile</h3>
+                <button class="modal-close" id="closeEditModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalFormContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelEdit">Cancel</button>
+                <button class="btn btn-primary" id="saveEdit">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationsDropdown" class="dropdown-menu hidden"
+        style="position: fixed; top: 70px; right: 20px; width: 400px; max-width: 90vw;">
+        <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--glass-border);">
+            <h4 style="margin: 0;">Notifications</h4>
+        </div>
+        <div class="notification-list" id="notificationsList"></div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
