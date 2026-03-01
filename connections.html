@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connections - InternHub</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container"><a href="dashboard.html" class="navbar-brand">InternHub</a>
+            <div class="navbar-search"><span class="navbar-search-icon">🔍</span><input type="text" id="globalSearch"
+                    placeholder="Search people, jobs, companies..."></div>
+            <div class="navbar-nav">
+                <div class="navbar-nav-item" id="homeNav">🏠</div>
+                <div class="navbar-nav-item" id="connectionsNav">👥</div>
+                <div class="navbar-nav-item" id="messagesNav">💬</div>
+                <div class="navbar-nav-item" id="notificationsNav">🔔<span class="badge-notification hidden"
+                        id="notificationsBadge">0</span></div>
+                <div class="navbar-nav-item dropdown" id="profileDropdown"><img src="" alt="Profile"
+                        class="avatar avatar-sm" id="navAvatar">
+                    <div class="dropdown-menu hidden" id="profileMenu"><a href="profile.html" class="dropdown-item">👤
+                            My Profile</a>
+                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item" id="logoutBtn">🚪
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg><span>Feed</span></a></li>
+                <li class="sidebar-nav-item"><a href="profile.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Profile</span></a></li>
+                <li class="sidebar-nav-item"><a href="connections.html" class="sidebar-nav-link active"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg><span>Connections</span></a></li>
+                <li class="sidebar-nav-item"><a href="jobs.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path
+                                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                            </path>
+                        </svg><span>Jobs</span></a></li>
+                <li class="sidebar-nav-item"><a href="messages.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                            <path
+                                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                            </path>
+                        </svg><span>Messages</span></a></li>
+                <li class="sidebar-nav-item"><a href="search.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Search</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container-fluid">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h1 class="animate-fade-in-up">My Network</h1>
+
+                <!-- Tabs -->
+                <div class="glass-card mt-lg animate-fade-in-up" style="padding: 0; overflow: hidden;">
+                    <div style="display: flex; border-bottom: 1px solid var(--glass-border);">
+                        <button class="network-tab active" data-tab="suggestions">People You May Know</button>
+                        <button class="network-tab" data-tab="connections">My Connections</button>
+                        <button class="network-tab" data-tab="requests">Requests</button>
+                    </div>
+                </div>
+
+                <!-- Content Sections -->
+                <div id="suggestionsSection" class="network-section active mt-md"></div>
+                <div id="connectionsSection" class="network-section hidden mt-md"></div>
+                <div id="requestsSection" class="network-section hidden mt-md"></div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .network-tab {
+            flex: 1;
+            padding: var(--spacing-md);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border-bottom: 2px solid transparent;
+        }
+
+        .network-tab.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent);
+            background: var(--glass-bg);
+        }
+
+        .network-section {
+            display: none;
+        }
+
+        .network-section.active {
+            display: block;
+        }
+    </style>
+
+    <div id="notificationsDropdown" class="dropdown-menu hidden"
+        style="position: fixed; top: 70px; right: 20px; width: 400px; max-width: 90vw;">
+        <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--glass-border);">
+            <h4 style="margin: 0;">Notifications</h4>
+        </div>
+        <div class="notification-list" id="notificationsList"></div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/connections.js"></script>
+</body>
+
+</html>
