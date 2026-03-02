@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - InternHub</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* Applicant card inside applicants modal */
+        .applicant-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .applicant-card:last-child {
+            border-bottom: none;
+        }
+
+        .applicant-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .applicant-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .applicant-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        /* Wide modals */
+        .modal-lg .modal-content {
+            max-width: 780px;
+        }
+
+        .modal-xl .modal-content {
+            max-width: 980px;
+        }
+
+        /* Post job form grid */
+        .post-job-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        @media (max-width: 600px) {
+            .post-job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .applicant-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="dashboard.html" class="navbar-brand">InternHub</a>
+            <div class="navbar-search"><span class="navbar-search-icon">🔍</span><input type="text" id="globalSearch"
+                    placeholder="Search people, jobs, companies..."></div>
+            <div class="navbar-nav">
+                <div class="navbar-nav-item" id="homeNav">🏠</div>
+                <div class="navbar-nav-item" id="connectionsNav">👥</div>
+                <div class="navbar-nav-item" id="messagesNav">💬</div>
+                <div class="navbar-nav-item" id="notificationsNav">🔔<span class="badge-notification hidden"
+                        id="notificationsBadge">0</span></div>
+                <div class="navbar-nav-item dropdown" id="profileDropdown"><img src="" alt="Profile"
+                        class="avatar avatar-sm" id="navAvatar">
+                    <div class="dropdown-menu hidden" id="profileMenu"><a href="profile.html" class="dropdown-item">👤
+                            My Profile</a>
+                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item" id="logoutBtn">🚪
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg><span>Feed</span></a></li>
+                <li class="sidebar-nav-item"><a href="profile.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Profile</span></a></li>
+                <li class="sidebar-nav-item"><a href="connections.html" class="sidebar-nav-link"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg><span>Connections</span></a></li>
+                <li class="sidebar-nav-item"><a href="jobs.html" class="sidebar-nav-link active"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path
+                                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                            </path>
+                        </svg><span>Jobs</span></a></li>
+                <li class="sidebar-nav-item"><a href="messages.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                            <path
+                                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                            </path>
+                        </svg><span>Messages</span></a></li>
+                <li class="sidebar-nav-item"><a href="search.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg><span>Search</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container-fluid">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <h1 class="animate-fade-in-up" id="jobsPageTitle">Find Your Next Opportunity</h1>
+
+                <!-- Create Job (company only) -->
+                <div id="createJobSection" class="glass-card mt-lg animate-fade-in-up hidden">
+                    <div
+                        style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                        <div>
+                            <h3 style="margin:0;">Manage Your Job Listings</h3>
+                            <p style="margin:0; color:var(--text-secondary); font-size:0.9rem;">
+                                Post internships and full-time roles to find the right talent.
+                            </p>
+                        </div>
+                        <button class="btn btn-primary" id="postJobBtn">➕ Post a Job</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="glass-card mt-lg animate-fade-in-up">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm);">
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Job Type</label>
+                            <select class="form-select" id="jobTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="Internship">Internship</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Experience Level</label>
+                            <select class="form-select" id="experienceFilter">
+                                <option value="">All Levels</option>
+                                <option value="Entry Level">Entry Level</option>
+                                <option value="Mid Level">Mid Level</option>
+                                <option value="Senior Level">Senior Level</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-input" id="locationFilter" placeholder="Any location">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Listings -->
+                <div id="jobsContainer" class="mt-lg"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         MODAL 0: Job Details (View mode for all)
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="jobDetailsModal" class="modal hidden">
+        <div class="modal-content animate-scale-in" style="max-width:680px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="detailsJobTitle">Job Title</h3>
+                <button class="modal-close" id="closeJobDetailsModal">&times;</button>
+            </div>
+            <div class="modal-body" style="line-height: 1.6;">
+                <div
+                    style="display: flex; gap: var(--spacing-sm); align-items: center; margin-bottom: var(--spacing-md);">
+                    <img src="" id="detailsCompanyLogo" alt="Company Logo"
+                        style="width: 48px; height: 48px; border-radius: var(--radius-sm); object-fit: cover;">
+                    <div>
+                        <strong id="detailsCompanyName" style="font-size: 1.1rem;">Company Name</strong>
+                        <div style="color: var(--text-tertiary); font-size: 0.875rem;" id="detailsJobMeta">📍 Location •
+                            Type • Level</div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Description</h4>
+                <p id="detailsJobDescription" style="color: var(--text-secondary); white-space: pre-wrap;">Job
+                    Description goes here.</p>
+
+                <h4 style="margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Required Skills</h4>
+                <div id="detailsJobSkills"
+                    style="display: flex; gap: var(--spacing-xs); flex-wrap: wrap; margin-bottom: var(--spacing-md);">
+                    <!-- Tags -->
+                </div>
+
+                <div id="detailsSalarySection" style="margin-top: var(--spacing-md); display: none;">
+                    <h4 style="margin-bottom: var(--spacing-xs);">Salary / Stipend</h4>
+                    <p id="detailsJobSalary" style="color: var(--text-secondary);">Negotiable</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="detailsModalFooter">
+                <!-- Apply button inserted dynamically for students -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         MODAL 1: Post a Job (Company only)
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="postJobModal" class="modal hidden">
+        <div class="modal-content animate-scale-in" style="max-width:680px;">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ Post a New Job</h3>
+                <button class="modal-close" id="closePostJobModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="postJobForm">
+                    <div class="post-job-grid">
+                        <div class="form-group">
+                            <label class="form-label">Job Title *</label>
+                            <input type="text" class="form-input" id="jobTitle"
+                                placeholder="e.g. Frontend Developer Intern" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <input type="text" class="form-input" id="jobLocation" placeholder="e.g. Remote, Kathmandu"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Job Type *</label>
+                            <select class="form-select" id="jobType" required>
+                                <option value="">Select type</option>
+                                <option value="Internship">Internship</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Experience Level *</label>
+                            <select class="form-select" id="jobExperience" required>
+                                <option value="">Select level</option>
+                                <option value="Entry Level">Entry Level</option>
+                                <option value="Mid Level">Mid Level</option>
+                                <option value="Senior Level">Senior Level</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Salary / Stipend</label>
+                            <input type="text" class="form-input" id="jobSalary"
+                                placeholder="e.g. $20-25/hr or Negotiable">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Required Skills</label>
+                            <input type="text" class="form-input" id="jobSkills"
+                                placeholder="Comma-separated: React, JS, SQL">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Job Description *</label>
+                        <textarea class="form-textarea" id="jobDescription" rows="5"
+                            placeholder="Describe the role, responsibilities, and what you're looking for..."
+                            required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelPostJob">Cancel</button>
+                <button class="btn btn-primary" id="submitPostJob">🚀 Post Job</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         MODAL 2: Student Apply
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="applyModal" class="modal hidden">
+        <div class="modal-content animate-scale-in">
+            <div class="modal-header">
+                <h3 class="modal-title">Apply for Job</h3>
+                <button class="modal-close" id="closeApplyModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 id="applyJobTitle"></h4>
+                <p id="applyCompanyName" style="color: var(--text-secondary);"></p>
+
+                <div class="form-group mt-md">
+                    <label class="form-label">Upload CV/Resume *</label>
+                    <input type="file" class="form-input" id="cvUpload" accept=".pdf,.doc,.docx,.png,.jpg" required>
+                    <p style="font-size: 0.875rem; color: var(--text-tertiary); margin-top: 0.5rem;">PDF, DOC, DOCX or
+                        image (Max 5MB)</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cover Letter (Optional)</label>
+                    <textarea class="form-textarea" id="coverLetter"
+                        placeholder="Why are you interested in this position?"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelApply">Cancel</button>
+                <button class="btn btn-primary" id="submitApplication">Submit Application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         MODAL 3: View Applicants (Company)
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="applicantsModal" class="modal hidden">
+        <div class="modal-content animate-scale-in" style="max-width:820px; width:95vw;">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">👥 Applicants</h3>
+                    <p id="applicantsJobTitle" style="margin:0; color:var(--text-secondary); font-size:0.9rem;"></p>
+                </div>
+                <button class="modal-close" id="closeApplicantsModal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:0; max-height:65vh; overflow-y:auto;">
+                <div id="applicantsList"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="closeApplicantsBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         MODAL 4: CV Viewer
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="cvViewerModal" class="modal hidden">
+        <div class="modal-content animate-scale-in" style="max-width:900px; width:95vw;">
+            <div class="modal-header">
+                <h3 class="modal-title">📄 <span id="cvFileName">CV / Resume</span></h3>
+                <button class="modal-close" id="closeCvModal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: var(--spacing-md);">
+                <div id="cvViewerContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications dropdown -->
+    <div id="notificationsDropdown" class="dropdown-menu hidden"
+        style="position: fixed; top: 70px; right: 20px; width: 400px; max-width: 90vw;">
+        <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--glass-border);">
+            <h4 style="margin: 0;">Notifications</h4>
+        </div>
+        <div class="notification-list" id="notificationsList"></div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jobs.js"></script>
+</body>
+
+</html>
