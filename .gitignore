@@ -1,0 +1,29 @@
+# Laravel
+/laravel/vendor/
+/laravel/.env
+/laravel/node_modules/
+/laravel/public/storage
+/laravel/storage/*.key
+/laravel/storage/framework/cache/data/*
+/laravel/storage/framework/sessions/*
+/laravel/storage/framework/testing/*
+/laravel/storage/framework/views/*
+/laravel/storage/logs/*
+/laravel/.phpunit.result.cache
+
+# Development tools
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Frontend
+node_modules/
+dist/

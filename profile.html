@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - InternHub</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+</head>
+
+<body>
+    <!-- Same navbar as dashboard.html -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="dashboard.html" class="navbar-brand">
+                <img src="img/logo.png" alt="InternHub" style="height: 30px; vertical-align: middle; margin-right: 8px;">
+                InternHub
+            </a>
+            <div class="navbar-search">
+                <span class="navbar-search-icon"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.25,1.25,0,0,0,1.768-1.768ZM4.25,10.25a6,6,0,1,1,6,6A6.007,6.007,0,0,1,4.25,10.25Z"/></svg></span>
+                <input type="text" id="globalSearch" placeholder="Search people, jobs, companies...">
+            </div>
+            <div class="navbar-nav">
+                <div class="navbar-nav-item" id="homeNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg></div>
+                <div class="navbar-nav-item" id="connectionsNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/><circle cx="20" cy="18" r="4" fill="currentColor"/><path d="M20 16v4M18 18h4" stroke="var(--bg-primary, #1a1a2e)" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-notification hidden"
+                        id="connectionsBadge">0</span></div>
+                <div class="navbar-nav-item" id="messagesNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg><span class="badge-notification hidden"
+                        id="messagesBadge">0</span></div>
+                <div class="navbar-nav-item" id="notificationsNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg><span class="badge-notification hidden"
+                        id="notificationsBadge">0</span></div>
+                <div class="navbar-nav-item dropdown" id="profileDropdown">
+                    <img src="" alt="Profile" class="avatar avatar-sm" id="navAvatar">
+                    <div class="dropdown-menu hidden" id="profileMenu">
+                        <a href="profile.html" class="dropdown-item"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 6px;"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/><circle cx="20" cy="18" r="4"/><path d="M20 16v4M18 18h4" stroke="var(--bg-primary, #1a1a2e)" stroke-width="1.5" stroke-linecap="round"/></svg> My Profile</a>
+                        <a href="#" class="dropdown-item" id="settingsLink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1-2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="logoutBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav-item"><a href="dashboard.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg><span>Feed</span></a></li>
+                <li class="sidebar-nav-item"><a href="profile.html" class="sidebar-nav-link active"><svg
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                            <circle cx="20" cy="18" r="4"></circle>
+                            <path d="M20 16v4M18 18h4" stroke="var(--bg-primary, #1a1a2e)" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg><span>Profile</span></a></li>
+                <li class="sidebar-nav-item"><a href="connections.html" class="sidebar-nav-link"><svg
+                            fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                            </path>
+                        </svg><span>Connections</span></a></li>
+                <li class="sidebar-nav-item"><a href="jobs.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                            <path
+                                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                            </path>
+                        </svg><span>Jobs</span></a></li>
+                <li class="sidebar-nav-item"><a href="messages.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                            <path
+                                d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                            </path>
+                        </svg><span>Messages</span></a></li>
+                <li class="sidebar-nav-item"><a href="search.html" class="sidebar-nav-link"><svg fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.25,1.25,0,0,0,1.768-1.768ZM4.25,10.25a6,6,0,1,1,6,6A6.007,6.007,0,0,1,4.25,10.25Z"></path>
+                        </svg><span>Search</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="container-fluid">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- Profile Card -->
+                <div class="profile-card animate-fade-in-up">
+                    <div class="profile-header">
+                        <img src="" alt="Cover" class="profile-cover" id="profileCover" style="display: none;">
+                        <div class="profile-header-actions">
+                            <button class="btn btn-ghost" id="editCoverBtn"
+                                style="background: rgba(0,0,0,0.5); border: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> Edit Cover</button>
+                            <input type="file" id="coverInput" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="profile-body"
+                        style="text-align: left; padding: var(--spacing-md); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--spacing-md);">
+
+                        <!-- Left: Avatar -->
+                        <div class="profile-avatar-column"
+                            style="flex: 0 0 150px; display: flex; justify-content: center; position: relative; margin-top: -100px; z-index: 10;">
+                            <div class="profile-avatar-wrapper" style="position: relative;">
+                                <img src="" alt="Profile" class="profile-avatar" id="profileAvatar"
+                                    style="width: 140px; height: 140px; border-width: 5px;">
+                                <button class="btn btn-ghost" id="editAvatarBtn"
+                                    style="position: absolute; bottom: 5px; right: 5px; border-radius: 50%; padding: 0.5rem; background: var(--glass-bg); backdrop-filter: blur(5px);">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                </button>
+                                <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <!-- Middle: Details -->
+                        <div class="profile-details-column" style="flex: 1; min-width: 250px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h2 class="profile-name" id="profileName" style="margin-bottom: 0.25rem;">Name</h2>
+                                    <p class="profile-headline" id="profileHeadline"
+                                        style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">
+                                        Headline</p>
+                                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: var(--spacing-sm);"
+                                        id="profileLocation"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Location</p>
+                                </div>
+                                <div class="flex gap-sm">
+                                    <button class="btn btn-primary btn-sm" id="editProfileBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.121a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit Profile</button>
+                                    <button class="btn btn-primary btn-sm hidden" id="connectBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Connect</button>
+                                    <button class="btn btn-secondary btn-sm hidden" id="messageBtn">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Message
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Details Hub (Links, Company Size, etc) -->
+                            <div id="profileDetailsGrid"
+                                style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-md); flex-wrap: wrap; font-size: 0.875rem;">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <!-- Profile Completion -->
+                            <div style="margin-bottom: var(--spacing-sm); width: 100%; max-width: 400px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; font-weight: 600;">Profile Strength</span>
+                                    <span style="font-size: 0.875rem; color: var(--accent);"
+                                        id="completionPercentage">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-bar-fill" id="completionProgress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Stats -->
+                        <div class="profile-stats-column"
+                            style="flex: 0 0 250px; padding-left: var(--spacing-md); border-left: 1px solid var(--glass-border);">
+                            <div class="profile-stats"
+                                style="flex-direction: column; gap: var(--spacing-md); border-top: none; padding: 0;">
+                                <div class="profile-stat"
+                                    style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Connections</div>
+                                    <div class="profile-stat-value" id="connectionsCount" style="font-size: 1.25rem;">0
+                                    </div>
+                                </div>
+
+                                <div class="profile-stat"
+                                    style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Posts</div>
+                                    <div class="profile-stat-value" id="postsCount" style="font-size: 1.25rem;">0</div>
+                                </div>
+                                <div class="profile-stat" id="jobsStatItem"
+                                    style="display: none; justify-content: space-between; align-items: center; text-align: left;">
+                                    <div class="profile-stat-label" style="font-size: 1rem;">Jobs</div>
+                                    <div class="profile-stat-value" id="jobsCount" style="font-size: 1.25rem;">0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-100">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>About</h3>
+                        <button class="btn btn-ghost" id="editAboutBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.121a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit</button>
+                    </div>
+                    <p id="profileBio" style="color: var(--text-secondary); line-height: 1.6;">No bio added yet</p>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-200" id="skillsSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Skills</h3>
+                        <button class="btn btn-ghost" id="addSkillBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Skill</button>
+                    </div>
+                    <div id="skillsList" class="flex flex-wrap gap-sm"></div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-300" id="experienceSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Experience</h3>
+                        <button class="btn btn-ghost" id="addExperienceBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Experience</button>
+                    </div>
+                    <div id="experienceList"></div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-400" id="educationSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Education</h3>
+                        <button class="btn btn-ghost" id="addEducationBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Education</button>
+                    </div>
+                    <div id="educationList"></div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="glass-card mt-md animate-fade-in-up delay-500" id="projectsSection">
+                    <div class="flex justify-between items-center mb-md">
+                        <h3>Projects</h3>
+                        <button class="btn btn-ghost" id="addProjectBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Project</button>
+                    </div>
+                    <div id="projectList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal hidden">
+        <div class="modal-content animate-scale-in">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Edit Profile</h3>
+                <button class="modal-close" id="closeEditModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalFormContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="cancelEdit">Cancel</button>
+                <button class="btn btn-primary" id="saveEdit">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationsDropdown" class="dropdown-menu hidden"
+        style="position: fixed; top: 70px; right: 20px; width: 400px; max-width: 90vw;">
+        <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--glass-border);">
+            <h4 style="margin: 0;">Notifications</h4>
+        </div>
+        <div class="notification-list" id="notificationsList"></div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
